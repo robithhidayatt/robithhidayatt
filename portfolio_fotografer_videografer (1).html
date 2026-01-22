@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robith Hidayatulloh | Photographer & Videographer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    body { background: #0e0e0e; color: #ffffff; line-height: 1.7; overflow-x: hidden; }
+
+    /* Fade cinematic animation */
+    .fade { opacity: 0; transform: translateY(30px); transition: all 1.2s ease; }
+    .fade.show { opacity: 1; transform: translateY(0); }
+
+    header { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+    header h1 { font-size: 3.2rem; font-weight: 600; letter-spacing: 2px; }
+    header p { margin-top: 1rem; font-size: 1.1rem; opacity: 0.8; }
+
+    section { padding: 5rem 10%; }
+    h2 { font-size: 1.8rem; margin-bottom: 2rem; font-weight: 500; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem; }
+    .grid img { width: 100%; border-radius: 16px; cursor: pointer; transition: transform .4s; }
+    .grid img:hover { transform: scale(1.03); }
+
+    .about { max-width: 760px; opacity: .9; }
+
+    .contact a { display: inline-block; margin-right: 1rem; margin-top: 1rem; padding: .7rem 1.6rem; border: 1px solid #ffffff; border-radius: 30px; transition: .3s; font-size: .9rem; }
+    .contact a:hover { background: #ffffff; color: #000000; }
+
+    footer { text-align: center; padding: 2rem; background: #090909; font-size: .8rem; opacity: .6; }
+
+    /* Lightbox */
+    .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.9); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: .4s; }
+    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; }
+    .lightbox.show { opacity: 1; pointer-events: auto; }
+
+    /* WhatsApp floating button */
+    .wa { position: fixed; bottom: 24px; right: 24px; background: #25D366; color: #fff; padding: 14px 20px; border-radius: 50px; font-size: 14px; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,.4); z-index: 99; }
+  </style>
+</head>
+<body>
+
+<header class="fade">
+  <div>
+    <h1>ROBITH HIDAYATULLOH</h1>
+    <p>Photographer & Videographer</p>
+  </div>
+</header>
+
+<section class="fade">
+  <h2>Photography</h2>
+  <div class="grid">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" />
+    <img src="https://images.unsplash.com/photo-1499084732479-de2c02d45fc4" />
+    <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429" />
+  </div>
+</section>
+
+<section class="fade">
+  <h2>Videography</h2>
+  <div class="grid">
+    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f" />
+    <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728" />
+  </div>
+</section>
+
+<section class="fade">
+  <h2>About</h2>
+  <p class="about">Saya Robith Hidayatulloh, fotografer dan videografer yang mengedepankan visual sederhana, elegan, dan bermakna. Fokus pada dokumentasi, komersial, dan storytelling visual.</p>
+</section>
+
+<section class="contact fade">
+  <h2>Contact</h2>
+  <a href="mailto:robith@email.com">Email</a>
+  <a href="https://instagram.com">Instagram</a>
+  <a href="https://youtube.com">YouTube</a>
+</section>
+
+<footer>
+  <p>© 2026 RobithHidayatt.com</p>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox"><img src="" /></div>
+
+<!-- WhatsApp -->
+<a class="wa" href="https://wa.me/6281234567890" target="_blank">WhatsApp</a>
+
+<script>
+  // Fade animation on scroll
+  const fades = document.querySelectorAll('.fade');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
+  }, { threshold: 0.2 });
+  fades.forEach(f => observer.observe(f));
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  document.querySelectorAll('.grid img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add('show');
+    });
+  });
+  lightbox.addEventListener('click', () => lightbox.classList.remove('show'));
+</script>
+
+</body>
+</html>
